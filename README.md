@@ -6,6 +6,10 @@ apply_nonlinear_filter: Applies a non-linear filter to the input image using a m
 
 richardson_lucy_deconvolution: Implements the Richardson-Lucy deconvolution algorithm. It iteratively refines an estimate of the original image based on a given kernel and number of iterations.
 
+utilizes two image processing techniques: a median filter (non-linear filter) and the Richardson-Lucy deconvolution algorithm for image restoration.
+
+If you are specifically looking for a random sampling algorithm.
+
 ## Installation
 
 First clone the project and open the folder using an IDE like VS Code, Pycharm.
