@@ -3,36 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Image Filter App</title>
+    <title>Image Filter and Restoration App</title>
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
 
     <style>
         body {
             background-color: #f8f9fa;
-        }
-
-        .container {
-            margin-top: 50px;
+            padding: 20px;
         }
 
         h1 {
-            text-align: center;
             color: #007bff;
         }
 
         form {
             margin-top: 20px;
-            text-align: center;
+        }
+
+        input[type="file"] {
+            display: none;
+        }
+
+        .custom-file-upload {
+            border: 1px solid #ccc;
+            display: inline-block;
+            padding: 6px 12px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .custom-file-upload:hover {
+            background-color: #0056b3;
+        }
+
+        h2 {
+            margin-top: 20px;
+            color: #007bff;
         }
 
         img {
             max-width: 100%;
             height: auto;
-            margin-top: 20px;
-            border: 1px solid #dee2e6;
+            margin-top: 10px;
+            border: 1px solid #ddd;
             border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
@@ -41,41 +60,25 @@
     <div class="container">
         <h1>Image Filter App</h1>
 
-        <form id="uploadForm" method="post" enctype="multipart/form-data">
-            <div class="custom-file mb-3">
-                <input type="file" class="custom-file-input" id="fileInput" name="file" accept=".png, .jpg, .jpeg, .gif" required>
-                <label class="custom-file-label" for="fileInput">Choose file</label>
-            </div>
-            <button type="submit" class="btn btn-primary">Upload and Filter</button>
+        <form method="post" enctype="multipart/form-data">
+            <label for="file" class="custom-file-upload">
+                Select Image
+            </label>
+            <input type="file" id="file" name="file" accept=".png, .jpg, .jpeg, .gif" required>
+            <input type="submit" class="btn btn-primary" value="Upload and Filter">
         </form>
 
-        <div id="imagePreview" class="text-center"></div>
+        {% if original_image %}
+            {% if filtered_image_path %}
+                <h2>Filtered Image With Randome Sampling</h2>
+                <img src="{{ filtered_image_path }}" alt="Filtered Image">
+            {% endif %}
+        {% endif %}
     </div>
 
-    <!-- Bootstrap JS and Popper.js (required for Bootstrap) -->
-    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-
-    <script>
-        // Image preview functionality
-        document.getElementById('fileInput').addEventListener('change', function (event) {
-            var imagePreview = document.getElementById('imagePreview');
-            var file = event.target.files[0];
-            var reader = new FileReader();
-
-            reader.onload = function () {
-                var img = document.createElement('img');
-                img.src = reader.result;
-                img.alt = 'Preview';
-                img.style.maxWidth = '100%';
-                img.style.marginTop = '20px';
-                imagePreview.innerHTML = '';
-                imagePreview.appendChild(img);
-            };
-
-            reader.readAsDataURL(file);
-        });
-    </script>
+    <!-- Bootstrap JS and Popper.js (optional) -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
 </html>
