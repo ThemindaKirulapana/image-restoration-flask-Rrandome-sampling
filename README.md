@@ -2,9 +2,9 @@
 # Flask App for Image Restoration
 
 When you upload an image, you can view the restored verison of it using this app.
+apply_nonlinear_filter: Applies a non-linear filter to the input image using a median filter.
 
-
-
+richardson_lucy_deconvolution: Implements the Richardson-Lucy deconvolution algorithm. It iteratively refines an estimate of the original image based on a given kernel and number of iterations.
 
 ## Installation
 
