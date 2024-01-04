@@ -8,7 +8,7 @@ richardson_lucy_deconvolution: Implements the Richardson-Lucy deconvolution algo
 
 utilizes two image processing techniques: a median filter (non-linear filter) and the Richardson-Lucy deconvolution algorithm for image restoration.
 
-If you are specifically looking for a random sampling algorithm.
+a random sampling algorithm.
 
 ## Installation
 
